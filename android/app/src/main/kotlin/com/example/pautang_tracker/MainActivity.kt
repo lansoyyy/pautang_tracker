@@ -1,4 +1,4 @@
-package com.example.pautang_tracker
+package com.algovision.utangtracker
 
 import io.flutter.embedding.android.FlutterActivity
 
