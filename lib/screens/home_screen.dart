@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/utils/colors.dart';
+import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      drawer: SizedBox(),
+      drawer: DrawerWidget(),
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: primary,
@@ -61,6 +62,15 @@ class HomeScreen extends StatelessWidget {
           color: Colors.white,
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
