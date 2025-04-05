@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, bottom: 20),
                     child: TextWidget(
-                      text: 'Login with your username',
+                      text: 'Login to manage your loans and payments.',
                       fontSize: 24,
                       color: Colors.white,
                       fontFamily: 'Bold',
@@ -99,6 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                 ],
               ),

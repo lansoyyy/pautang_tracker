@@ -23,7 +23,7 @@ class LandingScreen extends StatelessWidget {
             ),
             color: Colors.black),
         child: Padding(
-          padding: const EdgeInsets.only(left: 10, bottom: 20),
+          padding: const EdgeInsets.only(left: 10, bottom: 20, right: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,13 +45,15 @@ class LandingScreen extends StatelessWidget {
                 ),
               ),
               TextWidget(
-                text: 'Utang Tracker App',
+                text: 'Track your pautang, hassle-free.',
                 fontSize: 38,
                 fontFamily: 'Bold',
                 color: Colors.white,
               ),
               TextWidget(
-                text: 'Utang? Noted. Bayad? Monitored.',
+                maxLines: 5,
+                text:
+                    'Manage borrowers, record payments, and never forget who owes you again. Simple. Organized. Tuloy-tuloy ang singilan.',
                 fontSize: 16,
                 fontFamily: 'Regular',
                 color: Colors.white,
@@ -64,8 +66,13 @@ class LandingScreen extends StatelessWidget {
                   width: 350,
                   label: 'Continue',
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                      (route) {
+                        return false;
+                      },
+                    );
                   },
                 ),
               ),
