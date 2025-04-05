@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/auth/login_screen.dart';
-import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/utils/const.dart';
 import 'package:pautang_tracker/widgets/button_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -18,7 +17,7 @@ class LandingScreen extends StatelessWidget {
             image: DecorationImage(
               opacity: 0.75,
               image: AssetImage(
-                'assets/images/portrait.jpg',
+                'assets/images/portrait.png',
               ),
               fit: BoxFit.cover,
             ),
@@ -36,7 +35,7 @@ class LandingScreen extends StatelessWidget {
                   child: Image.asset(
                     icon,
                     height: 25,
-                    color: primary,
+                    color: Colors.white,
                   ),
                 ),
               ),
