@@ -51,7 +51,7 @@ class LandingScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               TextWidget(
-                text: 'Track your utang, stay on top\nof your finances.',
+                text: 'Utang? Noted. Bayad? Monitored.',
                 fontSize: 16,
                 fontFamily: 'Regular',
                 color: Colors.white,
