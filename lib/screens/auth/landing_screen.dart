@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/screens/auth/login_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/utils/const.dart';
 import 'package:pautang_tracker/widgets/button_widget.dart';
@@ -63,7 +64,10 @@ class LandingScreen extends StatelessWidget {
                 child: ButtonWidget(
                   width: 350,
                   label: 'Continue',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+                  },
                 ),
               ),
             ],
