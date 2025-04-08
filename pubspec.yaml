@@ -38,6 +38,7 @@ dependencies:
   fluttertoast:
   syncfusion_flutter_calendar:
   syncfusion_flutter_charts:
+  flutter_slidable:
 
 dev_dependencies:
   flutter_test:
