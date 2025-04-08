@@ -21,6 +21,32 @@ class NotifTab extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: Icon(
+              Icons.notifications,
+            ),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                TextWidget(
+                  text: 'Title of the notification',
+                  fontSize: 18,
+                  fontFamily: 'Medium',
+                ),
+                TextWidget(
+                  text: 'January 01, 2001',
+                  fontSize: 12,
+                  fontFamily: 'Regular',
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

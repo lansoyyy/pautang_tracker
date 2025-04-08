@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -64,7 +65,12 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const NotifTab()),
+                (route) => false,
+              );
+            },
             icon: Icon(
               Icons.notifications_none_outlined,
               color: Colors.white,
