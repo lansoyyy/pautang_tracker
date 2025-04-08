@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 
 import '../screens/home_screen.dart';
@@ -50,7 +51,12 @@ class DrawerWidget extends StatelessWidget {
                 Icons.notifications_none_sharp,
                 color: Colors.black,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const NotifTab()),
+                  (route) => false,
+                );
+              },
               title: TextWidget(
                 text: 'Notifications',
                 fontSize: 18,
