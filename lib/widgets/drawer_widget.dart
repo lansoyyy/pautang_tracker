@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
+import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 
 import '../screens/home_screen.dart';
@@ -68,7 +69,12 @@ class DrawerWidget extends StatelessWidget {
                 Icons.payment,
                 color: Colors.black,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const UtangTab()),
+                  (route) => false,
+                );
+              },
               title: TextWidget(
                 text: 'All Debt',
                 fontSize: 18,
