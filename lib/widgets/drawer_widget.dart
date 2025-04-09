@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -86,7 +87,12 @@ class DrawerWidget extends StatelessWidget {
                 Icons.add_box_outlined,
                 color: Colors.black,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const AdddebtTab()),
+                  (route) => false,
+                );
+              },
               title: TextWidget(
                 text: 'Add Debt',
                 fontSize: 18,
