@@ -18,11 +18,12 @@ class _UtangTabState extends State<UtangTab> {
   String nameSearched = '';
 
   final List<String> items = [
-    'All Utang',
-    'One Time Utang',
-    'Installment Utang'
+    'All Loan',
+    'One Time Loan',
+    'Installment Loan',
+    'Overdue Loan'
   ];
-  final String? selectedItem = 'All Utang';
+  final String? selectedItem = 'All Loan';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

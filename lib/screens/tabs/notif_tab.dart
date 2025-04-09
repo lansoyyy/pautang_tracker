@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -23,26 +24,81 @@ class NotifTab extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ListTile(
-            leading: Icon(
-              Icons.notifications,
-            ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+          return Slidable(
+            endActionPane: ActionPane(
+              motion: ScrollMotion(),
               children: [
-                TextWidget(
-                  text: 'Title of the notification',
-                  fontSize: 18,
-                  fontFamily: 'Medium',
-                ),
-                TextWidget(
-                  text: 'January 01, 2001',
-                  fontSize: 12,
-                  fontFamily: 'Regular',
-                  color: Colors.grey,
+                SlidableAction(
+                  onPressed: (context) {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title: const Text(
+                                'Delete Confirmation',
+                                style: TextStyle(
+                                    fontFamily: 'Bold',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              content: const Text(
+                                'Are you sure you want to delete this Notification?',
+                                style: TextStyle(fontFamily: 'Regular'),
+                              ),
+                              actions: <Widget>[
+                                MaterialButton(
+                                  onPressed: () =>
+                                      Navigator.of(context).pop(true),
+                                  child: const Text(
+                                    'Close',
+                                    style: TextStyle(
+                                        fontFamily: 'Regular',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                MaterialButton(
+                                  onPressed: () async {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Continue',
+                                    style: TextStyle(
+                                        fontFamily: 'Regular',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ));
+                  },
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete,
+                  label: 'Delete',
                 ),
               ],
+            ),
+            child: ListTile(
+              leading: Icon(
+                Icons.notifications,
+              ),
+              trailing: Icon(
+                Icons.keyboard_arrow_right,
+              ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextWidget(
+                    text: 'Title of the notification',
+                    fontSize: 18,
+                    fontFamily: 'Medium',
+                  ),
+                  TextWidget(
+                    text: 'January 01, 2001',
+                    fontSize: 12,
+                    fontFamily: 'Regular',
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
             ),
           );
         },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
@@ -42,6 +43,22 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: DrawerWidget(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const AdddebtTab()),
+            (route) => false,
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: primary,
@@ -120,7 +137,7 @@ class HomeScreen extends StatelessWidget {
                 height: 10,
               ),
               TextWidget(
-                text: 'Number of:',
+                text: 'Summary',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
