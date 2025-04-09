@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
+import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -104,7 +105,12 @@ class DrawerWidget extends StatelessWidget {
                 Icons.groups_2_outlined,
                 color: Colors.black,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const BorrowerTab()),
+                  (route) => false,
+                );
+              },
               title: TextWidget(
                 text: 'Borrowers',
                 fontSize: 18,
