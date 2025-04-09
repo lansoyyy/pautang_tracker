@@ -11,6 +11,8 @@ class TextFieldWidget extends StatefulWidget {
   final int? maxLine;
   final TextInputType? inputType;
   late bool? showEye;
+  late bool? enabled;
+  late bool? isInterest;
   late Color? color;
   late Color? borderColor;
   late Color? hintColor;
@@ -25,13 +27,15 @@ class TextFieldWidget extends StatefulWidget {
     this.hint = '',
     required this.controller,
     this.isObscure = false,
+    this.isInterest = false,
+    this.enabled = true,
     this.width = 300,
     this.height = 40,
     this.maxLine = 1,
-    this.hintColor = Colors.white,
+    this.hintColor = Colors.black,
     this.borderColor = Colors.transparent,
     this.showEye = false,
-    this.color = Colors.white,
+    this.color = Colors.black,
     this.radius = 5,
     this.textCapitalization = TextCapitalization.sentences,
     this.inputType = TextInputType.text,
@@ -48,33 +52,41 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextWidget(text: widget.label, fontSize: 12, color: widget.hintColor!),
+        TextWidget(text: widget.label, fontSize: 14, color: widget.hintColor!),
         const SizedBox(
           height: 5,
         ),
         TextFormField(
           style: const TextStyle(
-            fontFamily: 'QRegular',
-            fontSize: 14,
-          ),
+              fontFamily: 'QRegular', fontSize: 14, color: Colors.black),
           textCapitalization: widget.textCapitalization!,
           keyboardType: widget.inputType,
           decoration: InputDecoration(
-            suffixIcon: widget.showEye! == true
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        widget.isObscure = !widget.isObscure!;
-                      });
-                    },
-                    icon: widget.isObscure!
-                        ? const Icon(Icons.visibility)
-                        : const Icon(Icons.visibility_off))
-                : const SizedBox(),
+            suffixIcon: widget.isInterest!
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextWidget(
+                      text: '%',
+                      fontSize: 18,
+                      fontFamily: 'Medium',
+                    ),
+                  )
+                : widget.showEye! == true
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() {
+                            widget.isObscure = !widget.isObscure!;
+                          });
+                        },
+                        icon: widget.isObscure!
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off))
+                    : const SizedBox(),
             filled: true,
             fillColor: Colors.white,
             hintText: widget.hint,
             border: InputBorder.none,
+            enabled: widget.enabled!,
             disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: widget.borderColor!,
