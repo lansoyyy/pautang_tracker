@@ -41,17 +41,6 @@ class HomeScreen extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
-        ),
-        onPressed: () {},
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-      ),
       drawer: DrawerWidget(),
       appBar: AppBar(
         foregroundColor: Colors.white,
