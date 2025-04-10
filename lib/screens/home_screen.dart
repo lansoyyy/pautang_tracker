@@ -501,7 +501,8 @@ class HomeScreen extends StatelessWidget {
                                                       fontFamily: 'Bold',
                                                     ),
                                                     TextWidget(
-                                                      text: 'Name',
+                                                      text:
+                                                          'Zone 03, Poblacion Impasugong Bukidnon',
                                                       fontSize: 12,
                                                       fontFamily: 'Regular',
                                                     ),
