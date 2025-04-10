@@ -22,6 +22,8 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
   final String _selectedFrequency = 'Monthly';
 
   final List<String> _frequencies = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
+
+  final payment = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,67 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: TextWidget(
+                  text: 'Payment',
+                  fontSize: 18,
+                ),
+                content: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextFieldWidget(
+                        label: 'Amount',
+                        controller: payment,
+                        inputType: TextInputType.number,
+                        borderColor: Colors.black,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      TextWidget(
+                        text:
+                            "Note: Balance's for this payment will be deducted to next payment.",
+                        fontSize: 11,
+                        fontFamily: 'Regular',
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: TextWidget(
+                      text: 'Close',
+                      fontSize: 16,
+                      fontFamily: 'Medium',
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: TextWidget(
+                      text: 'Save Payment',
+                      fontSize: 16,
+                      fontFamily: 'Medium',
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        },
         child: Icon(
           Icons.paypal_outlined,
           color: Colors.white,
