@@ -53,10 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-      apiKey: "AIzaSyCo_jDlzMS5pv3W1_YBCgvGRLovzk5-bKE",
-      authDomain: "attendify-97737.firebaseapp.com",
-      projectId: "attendify-97737",
-      storageBucket: "attendify-97737.firebasestorage.app",
-      messagingSenderId: "236157706805",
-      appId: "1:236157706805:web:ed4b6ab380c458aa19077c");
+      apiKey: "AIzaSyBVdAF4ijAMe0ZsqQCoea0AnaueKVuukeQ",
+      authDomain: "pautang-tracker.firebaseapp.com",
+      projectId: "pautang-tracker",
+      storageBucket: "pautang-tracker.firebasestorage.app",
+      messagingSenderId: "1012820671260",
+      appId: "1:1012820671260:web:427a05e08e84566a0d18d9");
 }

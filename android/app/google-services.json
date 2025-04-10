@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1012820671260",
+    "project_id": "pautang-tracker",
+    "storage_bucket": "pautang-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012820671260:android:70ee8f6926cb45830d18d9",
+        "android_client_info": {
+          "package_name": "com.algovision.utangtracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXx3wAnONkCEW1J8216jgyw7wT2YFLdD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
