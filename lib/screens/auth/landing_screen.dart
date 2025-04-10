@@ -15,7 +15,7 @@ class LandingScreen extends StatelessWidget {
         height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
-              opacity: 0.75,
+              opacity: 0.5,
               image: AssetImage(
                 'assets/images/portrait.png',
               ),
@@ -29,7 +29,7 @@ class LandingScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 75, right: 30),
+                padding: const EdgeInsets.only(top: 75, right: 10),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Image.asset(

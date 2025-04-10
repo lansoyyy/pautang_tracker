@@ -73,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: SizedBox(
                       width: 350,
                       child: TextFieldWidget(
+                        hintColor: Colors.white,
                         label: 'Username',
                         controller: username,
                         showEye: true,
