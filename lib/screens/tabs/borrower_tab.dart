@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:pautang_tracker/screens/add_borrower_screen.dart';
+import 'package:pautang_tracker/screens/view_debt_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -146,6 +147,12 @@ class _BorrowerTabState extends State<BorrowerTab> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const ViewDebtScreen()),
+                            );
+                          },
                           leading: Icon(
                             Icons.account_circle,
                             size: 50,

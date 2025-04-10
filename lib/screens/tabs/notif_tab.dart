@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:pautang_tracker/screens/view_debt_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -76,6 +77,12 @@ class NotifTab extends StatelessWidget {
               ],
             ),
             child: ListTile(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => const ViewDebtScreen()),
+                );
+              },
               leading: Icon(
                 Icons.notifications,
               ),
