@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
+import 'package:pautang_tracker/screens/tabs/editdebt_tab.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
@@ -172,7 +173,12 @@ class _UtangTabState extends State<UtangTab> {
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        onPressed: (context) {},
+                        onPressed: (context) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const EditDebtTab()),
+                          );
+                        },
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         icon: Icons.edit,
