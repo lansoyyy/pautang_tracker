@@ -39,6 +39,9 @@ dependencies:
   syncfusion_flutter_calendar:
   syncfusion_flutter_charts:
   flutter_slidable:
+  firebase_core:
+  firebase_database:
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
