@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
+import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
+import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
 import 'package:pautang_tracker/screens/view_debt_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
@@ -145,104 +147,120 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Card(
-                    color: Colors.white,
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: SizedBox(
-                      width: 175,
-                      height: 125,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 65,
-                              width: 65,
-                              decoration: BoxDecoration(
-                                color: primary.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/borrow.png',
-                                  height: 40,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const BorrowerTab()),
+                      );
+                    },
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: SizedBox(
+                        width: 175,
+                        height: 125,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 65,
+                                width: 65,
+                                decoration: BoxDecoration(
+                                  color: primary.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    'assets/images/borrow.png',
+                                    height: 40,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget(
-                                    text: '108',
-                                    fontSize: 38,
-                                    fontFamily: 'Bold',
-                                  ),
-                                  TextWidget(
-                                    text: 'Borrowers',
-                                    fontSize: 12,
-                                    fontFamily: 'Regular',
-                                  ),
-                                ],
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget(
+                                      text: '108',
+                                      fontSize: 38,
+                                      fontFamily: 'Bold',
+                                    ),
+                                    TextWidget(
+                                      text: 'Borrowers',
+                                      fontSize: 12,
+                                      fontFamily: 'Regular',
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Card(
-                    color: Colors.white,
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: SizedBox(
-                      width: 175,
-                      height: 125,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 65,
-                              width: 65,
-                              decoration: BoxDecoration(
-                                color: primary.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/deadline.png',
-                                  height: 40,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const UtangTab()),
+                      );
+                    },
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: SizedBox(
+                        width: 175,
+                        height: 125,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 65,
+                                width: 65,
+                                decoration: BoxDecoration(
+                                  color: primary.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    'assets/images/deadline.png',
+                                    height: 40,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget(
-                                    text: '12',
-                                    fontSize: 38,
-                                    fontFamily: 'Bold',
-                                  ),
-                                  TextWidget(
-                                    text: 'Overdue\nLoans',
-                                    fontSize: 12,
-                                    fontFamily: 'Regular',
-                                  ),
-                                ],
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget(
+                                      text: '12',
+                                      fontSize: 38,
+                                      fontFamily: 'Bold',
+                                    ),
+                                    TextWidget(
+                                      text: 'Overdue\nLoans',
+                                      fontSize: 12,
+                                      fontFamily: 'Regular',
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -252,52 +270,59 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Card(
-                color: Colors.white,
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 125,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 65,
-                          width: 65,
-                          decoration: BoxDecoration(
-                            color: primary.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/loan.png',
-                              height: 40,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const UtangTab()),
+                  );
+                },
+                child: Card(
+                  color: Colors.white,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 125,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 65,
+                            width: 65,
+                            decoration: BoxDecoration(
+                              color: primary.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/loan.png',
+                                height: 40,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: 20),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextWidget(
-                              text: '28',
-                              fontSize: 38,
-                              fontFamily: 'Bold',
-                            ),
-                            TextWidget(
-                              text: 'Loans Due Today',
-                              fontSize: 12,
-                              fontFamily: 'Regular',
-                            ),
-                          ],
-                        ),
-                      ],
+                          const SizedBox(width: 20),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                text: '28',
+                                fontSize: 38,
+                                fontFamily: 'Bold',
+                              ),
+                              TextWidget(
+                                text: 'Loans Due Today',
+                                fontSize: 12,
+                                fontFamily: 'Regular',
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
