@@ -11,7 +11,8 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  String id;
+  HomeScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

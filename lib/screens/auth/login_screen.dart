@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/home_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
@@ -5,6 +6,7 @@ import 'package:pautang_tracker/utils/const.dart';
 import 'package:pautang_tracker/widgets/button_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
+import 'package:pautang_tracker/widgets/toast_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -91,13 +93,30 @@ class _LoginScreenState extends State<LoginScreen> {
                       textColor: primary,
                       label: 'Login',
                       onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
-                          (route) {
-                            return false;
-                          },
-                        );
+                        FirebaseFirestore.instance
+                            .collection('Users')
+                            .where('username', isEqualTo: username.text)
+                            .get()
+                            .then((QuerySnapshot querySnapshot) {
+                          if (querySnapshot.docs.isEmpty) {
+                            showToast("Username doesn't exist!");
+                          } else {
+                            if (querySnapshot.docs.first['isActive']) {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen(
+                                          id: querySnapshot.docs.first.id,
+                                        )),
+                                (route) {
+                                  return false;
+                                },
+                              );
+                            } else {
+                              showToast(
+                                  "This account with provided username is not active!");
+                            }
+                          }
+                        });
                       },
                     ),
                   ),
