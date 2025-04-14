@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl:
   fluttertoast:
+  get_storage:
   syncfusion_flutter_calendar:
   syncfusion_flutter_charts:
   flutter_slidable:
