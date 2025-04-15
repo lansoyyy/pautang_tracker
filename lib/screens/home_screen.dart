@@ -46,7 +46,9 @@ class HomeScreen extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        id: id,
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primary,
         shape: RoundedRectangleBorder(
@@ -54,7 +56,10 @@ class HomeScreen extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const AdddebtTab()),
+            MaterialPageRoute(
+                builder: (context) => AdddebtTab(
+                      id: id,
+                    )),
             (route) => false,
           );
         },
@@ -77,7 +82,10 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const NotifTab()),
+                MaterialPageRoute(
+                    builder: (context) => NotifTab(
+                          id: id,
+                        )),
                 (route) => false,
               );
             },
@@ -152,7 +160,9 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => const BorrowerTab()),
+                            builder: (context) => BorrowerTab(
+                                  id: id,
+                                )),
                       );
                     },
                     child: Card(
@@ -211,7 +221,9 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => const UtangTab()),
+                            builder: (context) => UtangTab(
+                                  id: id,
+                                )),
                       );
                     },
                     child: Card(
@@ -274,7 +286,10 @@ class HomeScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const UtangTab()),
+                    MaterialPageRoute(
+                        builder: (context) => UtangTab(
+                              id: id,
+                            )),
                   );
                 },
                 child: Card(

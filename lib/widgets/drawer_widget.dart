@@ -8,7 +8,8 @@ import 'package:pautang_tracker/widgets/text_widget.dart';
 import '../screens/home_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  String id;
+  DrawerWidget({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,10 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => HomeScreen(
+                            id: id,
+                          )),
                   (route) => false,
                 );
               },
@@ -56,7 +60,10 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const NotifTab()),
+                  MaterialPageRoute(
+                      builder: (context) => NotifTab(
+                            id: id,
+                          )),
                   (route) => false,
                 );
               },
@@ -73,7 +80,10 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const UtangTab()),
+                  MaterialPageRoute(
+                      builder: (context) => UtangTab(
+                            id: id,
+                          )),
                   (route) => false,
                 );
               },
@@ -90,7 +100,10 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const AdddebtTab()),
+                  MaterialPageRoute(
+                      builder: (context) => AdddebtTab(
+                            id: id,
+                          )),
                   (route) => false,
                 );
               },
@@ -107,7 +120,10 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const BorrowerTab()),
+                  MaterialPageRoute(
+                      builder: (context) => BorrowerTab(
+                            id: id,
+                          )),
                   (route) => false,
                 );
               },

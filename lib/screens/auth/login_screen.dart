@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pautang_tracker/screens/home_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/utils/const.dart';
@@ -17,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final username = TextEditingController();
+
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             showToast("Username doesn't exist!");
                           } else {
                             if (querySnapshot.docs.first['isActive']) {
+                              box.write('username', username.text);
                               Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
                                     builder: (context) => HomeScreen(

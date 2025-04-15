@@ -9,7 +9,8 @@ import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 
 class UtangTab extends StatefulWidget {
-  const UtangTab({super.key});
+  String id;
+  UtangTab({super.key, required this.id});
 
   @override
   State<UtangTab> createState() => _UtangTabState();
@@ -36,7 +37,10 @@ class _UtangTabState extends State<UtangTab> {
         ),
         onPressed: () {
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const AdddebtTab()),
+            MaterialPageRoute(
+                builder: (context) => AdddebtTab(
+                      id: widget.id,
+                    )),
             (route) => false,
           );
         },
@@ -45,7 +49,9 @@ class _UtangTabState extends State<UtangTab> {
           color: Colors.white,
         ),
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        id: widget.id,
+      ),
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: primary,

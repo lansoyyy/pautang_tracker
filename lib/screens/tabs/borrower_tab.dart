@@ -7,7 +7,8 @@ import 'package:pautang_tracker/widgets/drawer_widget.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 
 class BorrowerTab extends StatefulWidget {
-  const BorrowerTab({super.key});
+  String id;
+  BorrowerTab({super.key, required this.id});
 
   @override
   State<BorrowerTab> createState() => _BorrowerTabState();
@@ -19,7 +20,9 @@ class _BorrowerTabState extends State<BorrowerTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        id: widget.id,
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primary,
         shape: RoundedRectangleBorder(

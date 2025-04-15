@@ -9,7 +9,8 @@ import 'package:pautang_tracker/widgets/textfield_widget.dart';
 import 'package:pautang_tracker/widgets/toast_widget.dart';
 
 class AdddebtTab extends StatefulWidget {
-  const AdddebtTab({super.key});
+  String id;
+  AdddebtTab({super.key, required this.id});
 
   @override
   State<AdddebtTab> createState() => _AdddebtTabState();
@@ -34,7 +35,9 @@ class _AdddebtTabState extends State<AdddebtTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget(
+        id: widget.id,
+      ),
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: primary,
@@ -219,7 +222,10 @@ class _AdddebtTabState extends State<AdddebtTab> {
                 label: 'Save',
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const UtangTab()),
+                    MaterialPageRoute(
+                        builder: (context) => UtangTab(
+                              id: widget.id,
+                            )),
                     (route) => false,
                   );
                   showToast('Utang saved succesfully!');
