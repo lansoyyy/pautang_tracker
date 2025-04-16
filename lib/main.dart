@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Utang Tracker App',
+      title: 'tang Tracker App',
       home: const SplashScreen(),
     );
   }
