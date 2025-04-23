@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pautang_tracker/services/add_borrower.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/button_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
@@ -115,6 +116,8 @@ class _AddBorrowerScreenState extends State<AddBorrowerScreen> {
                 child: ButtonWidget(
                   label: 'Save',
                   onPressed: () {
+                    addBorrower(name.text, selectedGender, number.text,
+                        address.text, notes.text);
                     Navigator.of(context).pop();
                     showToast('Borrower saved successfully!');
                   },
