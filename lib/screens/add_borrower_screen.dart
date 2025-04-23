@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/services/add_borrower.dart';
 import 'package:pautang_tracker/utils/colors.dart';
@@ -6,7 +7,10 @@ import 'package:pautang_tracker/widgets/textfield_widget.dart';
 import 'package:pautang_tracker/widgets/toast_widget.dart';
 
 class AddBorrowerScreen extends StatefulWidget {
-  const AddBorrowerScreen({super.key});
+  String? id;
+  dynamic data;
+
+  AddBorrowerScreen({super.key, this.id, this.data});
 
   @override
   State<AddBorrowerScreen> createState() => _AddBorrowerScreenState();
@@ -18,6 +22,22 @@ class _AddBorrowerScreenState extends State<AddBorrowerScreen> {
   final number = TextEditingController();
   String? selectedGender = 'Male';
   final notes = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.id != '') {
+      setState(() {
+        name.text = widget.data['name'];
+        address.text = widget.data['address'];
+        number.text = widget.data['contactNumber'];
+        selectedGender = widget.data['gender'];
+        notes.text = widget.data['note'];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,9 +135,22 @@ class _AddBorrowerScreenState extends State<AddBorrowerScreen> {
               Center(
                 child: ButtonWidget(
                   label: 'Save',
-                  onPressed: () {
-                    addBorrower(name.text, selectedGender, number.text,
-                        address.text, notes.text);
+                  onPressed: () async {
+                    if (widget.id != '') {
+                      await FirebaseFirestore.instance
+                          .collection('Borrower')
+                          .doc(widget.id)
+                          .update({
+                        'name': name.text,
+                        'address': address.text,
+                        'contactNumber': number.text,
+                        'gender': selectedGender,
+                        'note': notes.text
+                      });
+                    } else {
+                      addBorrower(name.text, selectedGender, number.text,
+                          address.text, notes.text);
+                    }
                     Navigator.of(context).pop();
                     showToast('Borrower saved successfully!');
                   },
