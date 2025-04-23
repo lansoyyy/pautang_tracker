@@ -498,7 +498,7 @@ class HomeScreen extends StatelessWidget {
                                                   Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const ViewDebtScreen()),
+                                                            ViewDebtScreen()),
                                                   );
                                                 },
                                                 leading: Icon(

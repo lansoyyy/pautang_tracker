@@ -82,8 +82,7 @@ class NotifTab extends StatelessWidget {
             child: ListTile(
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => const ViewDebtScreen()),
+                  MaterialPageRoute(builder: (context) => ViewDebtScreen()),
                 );
               },
               leading: Icon(

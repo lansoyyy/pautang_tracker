@@ -197,8 +197,9 @@ class _BorrowerTabState extends State<BorrowerTab> {
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ViewDebtScreen()),
+                                        builder: (context) => ViewDebtScreen(
+                                              id: borrower.id,
+                                            )),
                                   );
                                 },
                                 leading: Icon(

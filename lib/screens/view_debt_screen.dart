@@ -5,7 +5,9 @@ import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
 
 class ViewDebtScreen extends StatefulWidget {
-  const ViewDebtScreen({super.key});
+  String? id;
+
+  ViewDebtScreen({super.key, this.id});
 
   @override
   State<ViewDebtScreen> createState() => _ViewDebtScreenState();
