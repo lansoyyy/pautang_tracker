@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
 import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
@@ -193,24 +194,50 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget(
-                                      text: '108',
-                                      fontSize: 38,
-                                      fontFamily: 'Bold',
-                                    ),
-                                    TextWidget(
-                                      text: 'Borrowers',
-                                      fontSize: 12,
-                                      fontFamily: 'Regular',
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              StreamBuilder<QuerySnapshot>(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('Borrower')
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasError) {
+                                      print(snapshot.error);
+                                      return const Center(child: Text('Error'));
+                                    }
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Padding(
+                                        padding: EdgeInsets.only(top: 50),
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      );
+                                    }
+
+                                    final data = snapshot.requireData;
+                                    return Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextWidget(
+                                            text: data.docs.length.toString(),
+                                            fontSize: 38,
+                                            fontFamily: 'Bold',
+                                          ),
+                                          TextWidget(
+                                            text: 'Borrowers',
+                                            fontSize: 12,
+                                            fontFamily: 'Regular',
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
                             ],
                           ),
                         ),

@@ -199,6 +199,7 @@ class _BorrowerTabState extends State<BorrowerTab> {
                                     MaterialPageRoute(
                                         builder: (context) => ViewDebtScreen(
                                               id: borrower.id,
+                                              data: borrower,
                                             )),
                                   );
                                 },

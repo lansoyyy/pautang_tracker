@@ -3,11 +3,13 @@ import 'package:intl/intl.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ViewDebtScreen extends StatefulWidget {
   String? id;
+  dynamic data;
 
-  ViewDebtScreen({super.key, this.id});
+  ViewDebtScreen({super.key, this.id, this.data});
 
   @override
   State<ViewDebtScreen> createState() => _ViewDebtScreenState();
@@ -105,7 +107,9 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
         backgroundColor: primary,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await launchUrlString('tel:${widget.data['contactNumber']}');
+            },
             icon: Icon(
               Icons.phone,
             ),
