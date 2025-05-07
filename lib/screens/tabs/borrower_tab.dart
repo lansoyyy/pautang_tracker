@@ -32,8 +32,10 @@ class _BorrowerTabState extends State<BorrowerTab> {
           borderRadius: BorderRadius.circular(100),
         ),
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddBorrowerScreen()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AddBorrowerScreen(
+                    id: '',
+                  )));
         },
         child: Icon(
           Icons.add,

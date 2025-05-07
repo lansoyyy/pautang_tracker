@@ -20,6 +20,7 @@ class TextFieldWidget extends StatefulWidget {
   final String? Function(String?)? validator; // Add validator parameter
 
   final TextCapitalization? textCapitalization;
+  Function(String)? onChanged;
 
   TextFieldWidget({
     super.key,
@@ -28,6 +29,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.controller,
     this.isObscure = false,
     this.isInterest = false,
+    this.onChanged,
     this.enabled = true,
     this.width = 300,
     this.height = 40,
@@ -61,6 +63,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               fontFamily: 'QRegular', fontSize: 14, color: Colors.black),
           textCapitalization: widget.textCapitalization!,
           keyboardType: widget.inputType,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
             suffixIcon: widget.isInterest!
                 ? Padding(
