@@ -38,6 +38,8 @@ class _AdddebtTabState extends State<AdddebtTab> {
   String borrowerId = '';
   String borrowerName = '';
 
+  dynamic borrowerData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,6 +169,7 @@ class _AdddebtTabState extends State<AdddebtTab> {
                       setState(() {
                         borrowerId = borrower.id;
                         borrowerName = borrower['name'];
+                        borrowerData = borrower.data();
                       });
                     },
                   );
@@ -291,16 +294,18 @@ class _AdddebtTabState extends State<AdddebtTab> {
     final double rate = double.tryParse(interestRate.text) ?? 0.0;
 
     addUtang(
-      borrowerId,
-      borrowerName,
-      selectedItem ?? '',
-      rate.toInt(),
-      selectedFrequency ?? '',
-      duedate.text,
-      widget.id,
-      calculateFlatInterest(
-          principal.toDouble(), rate), // Use calculated final amount
-    );
+        borrowerId,
+        borrowerName,
+        selectedItem ?? '',
+        rate.toInt(),
+        selectedFrequency ?? '',
+        duedate.text,
+        widget.id,
+        calculateFlatInterest(
+          principal.toDouble(),
+          rate,
+        ), // Use calculated final amount
+        borrowerData);
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(

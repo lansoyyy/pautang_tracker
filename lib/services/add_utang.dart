@@ -8,7 +8,8 @@ Future<String> addUtang(
     String paymentTerms,
     String dueDate,
     String myId,
-    double amount) async {
+    double amount,
+    borrowerData) async {
   final docUser = FirebaseFirestore.instance.collection('Utang').doc();
 
   final json = {
@@ -26,6 +27,7 @@ Future<String> addUtang(
     'month': DateTime.now().month,
     'day': DateTime.now().day,
     'isPaid': false,
+    'borrowerData': borrowerData,
   };
 
   await docUser.set(json);
