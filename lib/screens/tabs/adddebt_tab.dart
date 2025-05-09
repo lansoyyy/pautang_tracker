@@ -29,10 +29,10 @@ class _AdddebtTabState extends State<AdddebtTab> {
         .format(DateTime.now().add(Duration(days: 30))),
   );
 
-  final List<String> items = ['Installment Utang', 'One Time Utang'];
+  final List<String> items = ['Installment Loan', 'One Time Loan'];
   final List<String> frequencies = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
 
-  String? selectedItem = 'Installment Utang';
+  String? selectedItem = 'Installment Loan';
   String? selectedFrequency = 'Monthly';
   String nameSearched = '';
   String borrowerId = '';

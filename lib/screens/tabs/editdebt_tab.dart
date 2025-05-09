@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pautang_tracker/utils/colors.dart';
@@ -7,19 +8,34 @@ import 'package:pautang_tracker/widgets/textfield_widget.dart';
 import 'package:pautang_tracker/widgets/toast_widget.dart';
 
 class EditDebtTab extends StatefulWidget {
-  const EditDebtTab({super.key});
+  dynamic data;
+
+  EditDebtTab({super.key, required this.data});
 
   @override
   State<EditDebtTab> createState() => _EditDebtTabState();
 }
 
 class _EditDebtTabState extends State<EditDebtTab> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.data.id != '') {
+      setState(() {
+        selectedItem = widget.data['typeOfUtang'];
+        duedate.text = widget.data['dueDate'];
+        interestRate.text = widget.data['interest'].toString();
+      });
+    }
+  }
+
   final searchController = TextEditingController();
   String nameSearched = '';
 
   final List<String> items = [
-    'Installment Utang',
-    'One Time Utang',
+    'Installment Loan',
+    'One Time Loan',
   ];
   String? selectedItem = 'Installment Utang';
 
@@ -43,7 +59,7 @@ class _EditDebtTabState extends State<EditDebtTab> {
             children: [
               ListTile(
                 title: TextWidget(
-                  text: 'Borrower: John Doe',
+                  text: 'Borrower: ${widget.data['name']}',
                   fontSize: 18,
                   fontFamily: 'Bold',
                 ),
@@ -81,13 +97,7 @@ class _EditDebtTabState extends State<EditDebtTab> {
                               ),
                             );
                           }).toList(),
-                          onChanged: (value) {
-                            // Handle the change
-                            print('Selected: $value');
-                            setState(() {
-                              selectedItem = value;
-                            });
-                          },
+                          onChanged: null,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -112,9 +122,8 @@ class _EditDebtTabState extends State<EditDebtTab> {
                     width: 150,
                     child: TextFieldWidget(
                       isInterest: true,
-                      label: selectedItem == 'Installment Utang'
-                          ? ' $_selectedFrequency interest (%)'
-                          : 'Interest (%)',
+                      enabled: false,
+                      label: '${widget.data['paymentTerms']} Interest (%)',
                       controller: interestRate,
                       borderColor: Colors.black,
                       inputType: TextInputType.number,
@@ -175,7 +184,11 @@ class _EditDebtTabState extends State<EditDebtTab> {
               ),
               ButtonWidget(
                 label: 'Save',
-                onPressed: () {
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('Utang')
+                      .doc(widget.data.id)
+                      .update({'dueDate': duedate.text});
                   Navigator.of(context).pop();
                   showToast('Utang saved succesfully!');
                 },
