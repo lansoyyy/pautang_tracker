@@ -23,6 +23,7 @@ class AdddebtTab extends StatefulWidget {
 class _AdddebtTabState extends State<AdddebtTab> {
   final searchController = TextEditingController();
   final interestRate = TextEditingController();
+  final duration = TextEditingController(text: '1');
   final amount = TextEditingController();
   final duedate = TextEditingController(
     text: DateFormat('MMMM dd, yyyy')
@@ -73,14 +74,24 @@ class _AdddebtTabState extends State<AdddebtTab> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextWidget(
-                              text: 'Total Amount (with interest)',
+                              text: selectedItem == 'Installment Loan'
+                                  ? '$selectedFrequency payment'
+                                  : 'Total Payment',
                               fontSize: 12,
                               color: Colors.grey,
                             ),
                             TextWidget(
-                              text: interestRate.text == ''
-                                  ? ''
-                                  : 'P${calculateFlatInterest(double.parse(amount.text), double.parse(interestRate.text)).toString()}',
+                              text: selectedItem == 'Installment Loan'
+                                  ? interestRate.text == ''
+                                      ? ''
+                                      : 'P${calculateInterest(
+                                          double.parse(amount.text),
+                                          double.parse(interestRate.text),
+                                        ).toStringAsFixed(2)}'
+                                  : calculateFlatInterest(
+                                      double.parse(amount.text),
+                                      double.parse(interestRate.text),
+                                    ).toStringAsFixed(2),
                               fontSize: 32,
                               color: Colors.green,
                               fontFamily: 'Bold',
@@ -93,9 +104,31 @@ class _AdddebtTabState extends State<AdddebtTab> {
               const SizedBox(height: 10),
               _buildDebtTypeAndInterest(),
               const SizedBox(height: 20),
-              if (selectedItem == 'Installment Utang') _buildPaymentFrequency(),
+              if (selectedItem == 'Installment Loan') _buildPaymentFrequency(),
               const SizedBox(height: 10),
-              _buildDueDatePicker(),
+              selectedItem == 'Installment Loan'
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                          SizedBox(width: 200, child: _buildDueDatePicker()),
+                          SizedBox(
+                            width: 150,
+                            child: TextFieldWidget(
+                              label: selectedFrequency == 'Daily'
+                                  ? 'How many days ?'
+                                  : 'How many ${selectedFrequency!.split('l')[0]} ?',
+                              controller: duration,
+                              borderColor: Colors.black,
+                              inputType: TextInputType.number,
+                              onChanged: (p0) {
+                                setState(() {
+                                  duration.text = p0;
+                                });
+                              },
+                            ),
+                          ),
+                        ])
+                  : _buildDueDatePicker(),
               const SizedBox(height: 40),
               Visibility(
                 visible: borrowerId != '',
@@ -208,8 +241,14 @@ class _AdddebtTabState extends State<AdddebtTab> {
               child: DropdownButtonFormField<String>(
                 value: selectedItem,
                 items: items
-                    .map((item) =>
-                        DropdownMenuItem(value: item, child: Text(item)))
+                    .map((item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        )))
                     .toList(),
                 onChanged: (value) => setState(() => selectedItem = value),
                 decoration: InputDecoration(
@@ -283,7 +322,7 @@ class _AdddebtTabState extends State<AdddebtTab> {
       child: TextFieldWidget(
         enabled: false,
         borderColor: Colors.black,
-        label: 'Due date',
+        label: 'Due date $selectedFrequency',
         controller: duedate,
       ),
     );
@@ -305,7 +344,17 @@ class _AdddebtTabState extends State<AdddebtTab> {
           principal.toDouble(),
           rate,
         ), // Use calculated final amount
-        borrowerData);
+        borrowerData,
+        selectedItem == 'One Time Loan'
+            ? calculateFlatInterest(
+                principal.toDouble(),
+                rate,
+              )
+            : calculateInterest(
+                principal.toDouble(),
+                rate,
+              ),
+        int.parse(duration.text));
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(

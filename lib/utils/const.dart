@@ -43,8 +43,19 @@ String groups = 'assets/images/groups.png';
 String gcash = 'assets/images/image 5.png';
 String paymaya = 'assets/images/image 6.png';
 String bpi = 'assets/images/clarity_bank-solid.png';
-double calculateFlatInterest(double amount, double ratePercent) {
+double calculateFlatInterest(
+  double amount,
+  double ratePercent,
+) {
   double interest = amount * (ratePercent / 100);
+
   double total = amount + interest;
   return total;
+}
+
+double calculateInterest(double amount, double ratePercent) {
+  double interest = amount * (ratePercent / 100);
+  // double partial = interest * duration;
+
+  return interest;
 }

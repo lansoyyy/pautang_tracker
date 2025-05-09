@@ -9,12 +9,16 @@ Future<String> addUtang(
     String dueDate,
     String myId,
     double amount,
-    borrowerData) async {
+    borrowerData,
+    double payment,
+    int duration) async {
   final docUser = FirebaseFirestore.instance.collection('Utang').doc();
 
   final json = {
     'borrowerId': borrowerId,
+    'payment': payment,
     'name': name,
+    'duration': duration,
     'typeOfUtang': typeOfUtang,
     'interest': interest,
     'paymentTerms': paymentTerms,

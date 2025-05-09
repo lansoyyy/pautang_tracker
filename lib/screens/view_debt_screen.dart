@@ -16,14 +16,7 @@ class ViewDebtScreen extends StatefulWidget {
 }
 
 class _ViewDebtScreenState extends State<ViewDebtScreen> {
-  final List<String> items = [
-    'Installment Utang',
-  ];
-  String? selectedItem = 'Installment Utang';
-
   final interestRate = TextEditingController(text: '5');
-
-  final String _selectedFrequency = 'Monthly';
 
   final List<String> _frequencies = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
 
@@ -108,7 +101,8 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
         actions: [
           IconButton(
             onPressed: () async {
-              await launchUrlString('tel:${widget.data['contactNumber']}');
+              await launchUrlString(
+                  'tel:${widget.data['borrowerData']['contactNumber']}');
             },
             icon: Icon(
               Icons.phone,
@@ -136,7 +130,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                         size: 125,
                       ),
                       TextWidget(
-                        text: 'John Doe',
+                        text: widget.data['borrowerData']['name'],
                         fontSize: 22,
                         fontFamily: 'Bold',
                       ),
@@ -152,7 +146,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                       SizedBox(
                         width: 200,
                         child: TextWidget(
-                          text: 'Male',
+                          text: widget.data['borrowerData']['gender'],
                           fontSize: 18,
                           fontFamily: 'Medium',
                         ),
@@ -169,7 +163,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                       SizedBox(
                         width: 200,
                         child: TextWidget(
-                          text: 'Zone 03, Poblacion, Impasugong Bukidnon',
+                          text: widget.data['borrowerData']['address'],
                           fontSize: 18,
                           fontFamily: 'Medium',
                         ),
@@ -191,153 +185,138 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextWidget(
-                    text: 'Payment this Month',
-                    fontSize: 16,
-                    fontFamily: 'Medium',
-                  ),
-                  TextWidget(
-                    text: 'P10,000',
-                    fontSize: 32,
-                    fontFamily: 'Bold',
-                    color: primary,
-                    decoration: TextDecoration.underline,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                        text: 'P25,000',
-                        fontSize: 28,
-                        fontFamily: 'Bold',
-                        color: Colors.green,
-                      ),
-                      TextWidget(
-                        text: 'Total Debt',
-                        fontSize: 12,
-                        fontFamily: 'Regular',
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                        text: 'P5,000',
-                        fontSize: 28,
-                        fontFamily: 'Bold',
-                        color: Colors.green,
-                      ),
-                      TextWidget(
-                        text: 'Total Paid',
-                        fontSize: 12,
-                        fontFamily: 'Regular',
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                        text: 'P20,000',
-                        fontSize: 28,
-                        fontFamily: 'Bold',
-                        color: Colors.green,
-                      ),
-                      TextWidget(
-                        text: 'Remaining Balance',
-                        fontSize: 12,
-                        fontFamily: 'Regular',
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                        text: 'Type of Utang:',
-                        fontSize: 14,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      SizedBox(
-                        width: 200,
-                        child: DropdownButtonFormField<String>(
-                          value: selectedItem,
-                          items: items.map((item) {
-                            return DropdownMenuItem<String>(
-                              enabled: false,
-                              value: item,
-                              child: Text(
-                                item,
-                                style: TextStyle(fontFamily: 'Medium'),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            // Handle the change
-                            print('Selected: $value');
-                            setState(() {
-                              selectedItem = value;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 0.5),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Colors.black, width: 0.5),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 10),
-                          ),
+              widget.data['typeOfUtang'] == 'Installment Loan'
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextWidget(
+                          text:
+                              'Payment this ${widget.data['paymentTerms'] == 'Daily' ? 'day' : '${widget.data['paymentTerms']!.split('l')[0]}'}',
+                          fontSize: 16,
+                          fontFamily: 'Medium',
                         ),
-                      ),
-                    ],
+                        TextWidget(
+                          text: 'P${widget.data['payment']}',
+                          fontSize: 32,
+                          fontFamily: 'Bold',
+                          color: primary,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextWidget(
+                          text: 'Total payment',
+                          fontSize: 16,
+                          fontFamily: 'Medium',
+                        ),
+                        TextWidget(
+                          text: 'P${widget.data['amount']}',
+                          fontSize: 32,
+                          fontFamily: 'Bold',
+                          color: primary,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ],
+                    ),
+              SizedBox(
+                height: 10,
+              ),
+              Visibility(
+                visible: widget.data['typeOfUtang'] != 'One Time Loan',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextWidget(
+                          text: widget.data['typeOfUtang'] == 'One Time Loan'
+                              ? 'P${widget.data['amount']}'
+                              : 'P${((widget.data['payment'] * widget.data['duration']) + widget.data['amount']).toStringAsFixed(2)}',
+                          fontSize: 28,
+                          fontFamily: 'Bold',
+                          color: Colors.green,
+                        ),
+                        TextWidget(
+                          text: 'Total Debt',
+                          fontSize: 12,
+                          fontFamily: 'Regular',
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextWidget(
+                          text: 'P(To Do)',
+                          fontSize: 28,
+                          fontFamily: 'Bold',
+                          color: Colors.green,
+                        ),
+                        TextWidget(
+                          text: 'Total Paid',
+                          fontSize: 12,
+                          fontFamily: 'Regular',
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextWidget(
+                          text: 'P(To Do)',
+                          fontSize: 28,
+                          fontFamily: 'Bold',
+                          color: Colors.green,
+                        ),
+                        TextWidget(
+                          text: 'Remaining Balance',
+                          fontSize: 12,
+                          fontFamily: 'Regular',
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 200,
+                    child: TextFieldWidget(
+                      enabled: false,
+                      label: 'Type of Utang',
+                      controller: TextEditingController(
+                          text: widget.data['typeOfUtang']),
+                      borderColor: Colors.black,
+                      inputType: TextInputType.number,
+                    ),
                   ),
                   SizedBox(
                     width: 150,
                     child: TextFieldWidget(
                       enabled: false,
                       isInterest: true,
-                      label: selectedItem == 'Installment Utang'
-                          ? ' $_selectedFrequency interest (%)'
+                      label: widget.data['typeOfUtang'] == 'Installment Loan'
+                          ? ' ${widget.data['paymentTerms']} interest (%)'
                           : 'Interest (%)',
-                      controller: interestRate,
+                      controller: TextEditingController(
+                          text: widget.data['interest'].toString()),
                       borderColor: Colors.black,
                       inputType: TextInputType.number,
                     ),
@@ -348,7 +327,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                 height: 20,
               ),
               Visibility(
-                visible: selectedItem == 'Installment Utang',
+                visible: widget.data['typeOfUtang'] == 'Installment Loan',
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -367,7 +346,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                             ),
                             leading: Radio<String>(
                               value: freq,
-                              groupValue: _selectedFrequency,
+                              groupValue: widget.data['paymentTerms'],
                               onChanged: (String? value) {},
                             ),
                           ),
@@ -377,21 +356,18 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: () {},
-                child: TextFieldWidget(
-                  enabled: false,
-                  borderColor: Colors.black,
-                  label: 'Due date',
-                  controller: duedate,
-                ),
+              TextFieldWidget(
+                enabled: false,
+                borderColor: Colors.black,
+                label: 'Due date',
+                controller: TextEditingController(text: widget.data['dueDate']),
               ),
               SizedBox(
                 height: 20,
               ),
               Divider(),
               TextWidget(
-                text: 'Payment History',
+                text: 'Payment History (To Do)',
                 fontSize: 18,
                 fontFamily: 'Bold',
               ),

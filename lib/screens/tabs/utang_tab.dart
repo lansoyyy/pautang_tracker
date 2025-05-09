@@ -303,7 +303,9 @@ class _UtangTabState extends State<UtangTab> {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => ViewDebtScreen()),
+                                      builder: (context) => ViewDebtScreen(
+                                            data: data.docs[index],
+                                          )),
                                 );
                               },
                               leading: Icon(
