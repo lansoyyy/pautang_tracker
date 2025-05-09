@@ -360,13 +360,12 @@ class _UtangTabState extends State<UtangTab> {
     );
   }
 
-  String formattedDate = DateFormat('MMMM dd, yyyy')
-      .format(DateTime.now().add(Duration(days: 30)));
+  String formattedDate = DateFormat('MMMM dd, yyyy').format(DateTime.now());
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now().add(Duration(days: 30)),
+      initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
