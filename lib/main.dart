@@ -16,6 +16,7 @@ void main() async {
 }
 
 // To Do
+// If logged in without creds, go to apply screen
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
