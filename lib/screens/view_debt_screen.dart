@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pautang_tracker/services/add_history.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
@@ -134,6 +135,11 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                                   .parse(widget.data['dueDate'])
                                   .add(Duration(days: 30)))
                         });
+                        addPaymentHistory(
+                            widget.data.id,
+                            int.parse(payment.text),
+                            DateFormat('MMMM dd, yyyy').format(DateTime.now()),
+                            widget.data['borrowerData']);
                         Navigator.pop(context);
                         Navigator.pop(context);
                         showToast('Payment recorded succesfully!');
@@ -441,52 +447,78 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
               ),
               Visibility(
                 visible: widget.data['typeOfUtang'] != 'One Time Loan',
-                child: SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: Icon(
-                          Icons.account_circle,
-                          size: 50,
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextWidget(
-                              text: 'John Doe',
-                              fontSize: 18,
-                              fontFamily: 'Bold',
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('Payment History')
+                        .where('loanId', isEqualTo: widget.data.id)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        print(snapshot.error);
+                        return const Center(child: Text('Error'));
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Padding(
+                          padding: EdgeInsets.only(top: 50),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.black,
                             ),
-                            TextWidget(
-                              text: 'Date: January 25, 2025',
-                              fontSize: 12,
-                              fontFamily: 'Regular',
-                            ),
-                          ],
-                        ),
-                        trailing: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextWidget(
-                              text: 'P5,499',
-                              fontSize: 24,
-                              fontFamily: 'Bold',
-                              color: Colors.green,
-                            ),
-                            TextWidget(
-                              text: 'Payment',
-                              fontSize: 12,
-                              fontFamily: 'Regular',
-                            ),
-                          ],
+                          ),
+                        );
+                      }
+
+                      final data = snapshot.requireData;
+                      return SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: data.docs.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              leading: Icon(
+                                Icons.account_circle,
+                                size: 50,
+                              ),
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextWidget(
+                                    text: data.docs[index]['borrowerData']
+                                        ['name'],
+                                    fontSize: 18,
+                                    fontFamily: 'Bold',
+                                  ),
+                                  TextWidget(
+                                    text: 'Date: ${data.docs[index]['date']}',
+                                    fontSize: 12,
+                                    fontFamily: 'Regular',
+                                  ),
+                                ],
+                              ),
+                              trailing: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextWidget(
+                                    text: 'P${data.docs[index]['amount']}',
+                                    fontSize: 24,
+                                    fontFamily: 'Bold',
+                                    color: Colors.green,
+                                  ),
+                                  TextWidget(
+                                    text: 'Payment',
+                                    fontSize: 12,
+                                    fontFamily: 'Regular',
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       );
-                    },
-                  ),
-                ),
+                    }),
               ),
             ],
           ),
