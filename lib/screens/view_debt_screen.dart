@@ -238,7 +238,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                         TextWidget(
                           text: widget.data['typeOfUtang'] == 'One Time Loan'
                               ? 'P${widget.data['amount']}'
-                              : 'P${((widget.data['payment'] * widget.data['duration']) + widget.data['amount']).toStringAsFixed(2)}',
+                              : 'P${((widget.data['payment'] * widget.data['duration'])).toStringAsFixed(0)}',
                           fontSize: 28,
                           fontFamily: 'Bold',
                           color: Colors.green,
@@ -256,7 +256,8 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: 'P(To Do)',
+                          text:
+                              'P${widget.data['paidAmount'].toStringAsFixed(0)}',
                           fontSize: 28,
                           fontFamily: 'Bold',
                           color: Colors.green,
@@ -274,7 +275,8 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: 'P(To Do)',
+                          text:
+                              'P${(widget.data['typeOfUtang'] == 'One Time Loan' ? widget.data['amount'] - widget.data['paidAmount'] : ((widget.data['payment'] * widget.data['duration'])) - widget.data['paidAmount']).toStringAsFixed(0)}',
                           fontSize: 28,
                           fontFamily: 'Bold',
                           color: Colors.green,

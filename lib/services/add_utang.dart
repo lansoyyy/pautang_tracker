@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 Future<String> addUtang(
     String borrowerId,
@@ -26,12 +27,14 @@ Future<String> addUtang(
     'myId': myId,
     'amount': amount,
     'dateTime': DateTime.now(),
+    'lastPaid': DateFormat('MMMM dd, yyyy').format(DateTime.now()),
     'id': docUser.id,
     'year': DateTime.now().year,
     'month': DateTime.now().month,
     'day': DateTime.now().day,
     'isPaid': false,
     'borrowerData': borrowerData,
+    'paidAmount': 0,
   };
 
   await docUser.set(json);

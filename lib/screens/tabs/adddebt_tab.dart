@@ -22,7 +22,7 @@ class AdddebtTab extends StatefulWidget {
 
 class _AdddebtTabState extends State<AdddebtTab> {
   final searchController = TextEditingController();
-  final interestRate = TextEditingController();
+  final interestRate = TextEditingController(text: '0');
   final duration = TextEditingController(text: '1');
   final amount = TextEditingController();
   final duedate = TextEditingController(
@@ -84,13 +84,20 @@ class _AdddebtTabState extends State<AdddebtTab> {
                               text: selectedItem == 'Installment Loan'
                                   ? interestRate.text == ''
                                       ? ''
-                                      : 'P${calculateInterest(
-                                          double.parse(amount.text),
-                                          double.parse(interestRate.text),
-                                        ).toStringAsFixed(2)}'
+                                      : duration.text == ''
+                                          ? ''
+                                          : 'P${(calculateFlatInterest(
+                                                double.parse(amount.text),
+                                                interestRate.text == ''
+                                                    ? 0
+                                                    : double.parse(
+                                                        interestRate.text),
+                                              ) / int.parse(duration.text)).toStringAsFixed(2)}'
                                   : calculateFlatInterest(
                                       double.parse(amount.text),
-                                      double.parse(interestRate.text),
+                                      interestRate.text == ''
+                                          ? 0
+                                          : double.parse(interestRate.text),
                                     ).toStringAsFixed(2),
                               fontSize: 32,
                               color: Colors.green,
@@ -343,17 +350,18 @@ class _AdddebtTabState extends State<AdddebtTab> {
         calculateFlatInterest(
           principal.toDouble(),
           rate,
-        ), // Use calculated final amount
+        ),
         borrowerData,
         selectedItem == 'One Time Loan'
             ? calculateFlatInterest(
                 principal.toDouble(),
                 rate,
               )
-            : calculateInterest(
-                principal.toDouble(),
-                rate,
-              ),
+            : calculateFlatInterest(
+                  principal.toDouble(),
+                  rate,
+                ) /
+                int.parse(duration.text),
         int.parse(duration.text));
 
     Navigator.of(context).pushAndRemoveUntil(
