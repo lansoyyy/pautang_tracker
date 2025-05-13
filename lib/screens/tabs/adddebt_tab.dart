@@ -49,7 +49,7 @@ class _AdddebtTabState extends State<AdddebtTab> {
         backgroundColor: primary,
         foregroundColor: Colors.white,
         title: TextWidget(
-          text: 'Add Debt',
+          text: 'Add Loan',
           fontSize: 18,
           fontFamily: 'Bold',
           color: Colors.white,

@@ -89,7 +89,7 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'All Debt',
+                text: 'All Loan',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
@@ -129,7 +129,7 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'Add Debt',
+                text: 'Add Loan',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),

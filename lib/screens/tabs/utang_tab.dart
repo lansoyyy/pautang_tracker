@@ -56,7 +56,7 @@ class _UtangTabState extends State<UtangTab> {
         foregroundColor: Colors.white,
         backgroundColor: primary,
         title: TextWidget(
-          text: 'Debts',
+          text: 'Loans',
           fontSize: 18,
           fontFamily: 'Bold',
           color: Colors.white,

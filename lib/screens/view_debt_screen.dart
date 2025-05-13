@@ -244,7 +244,7 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                           color: Colors.green,
                         ),
                         TextWidget(
-                          text: 'Total Debt',
+                          text: 'Total Loan',
                           fontSize: 12,
                           fontFamily: 'Regular',
                           color: Colors.grey,

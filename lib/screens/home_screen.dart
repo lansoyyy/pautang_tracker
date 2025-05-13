@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   child: SfCartesianChart(
                       title: ChartTitle(
-                        text: 'Debt and Payments Comparison',
+                        text: 'Loan and Payments Comparison',
                         textStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -136,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                       series: <CartesianSeries>[
                         // Renders line chart
                         LineSeries<SalesData, int>(
-                            name: 'Total Debt',
+                            name: 'Total Loan',
                             dataSource: chartData,
                             xValueMapper: (SalesData sales, _) => sales.year,
                             yValueMapper: (SalesData sales, _) => sales.sales),
@@ -421,7 +421,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   Divider(),
                                   TextWidget(
-                                    text: 'Debt',
+                                    text: 'Loan',
                                     fontSize: 18,
                                     fontFamily: 'Bold',
                                   ),
