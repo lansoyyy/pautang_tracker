@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/text_widget.dart';
 import 'package:pautang_tracker/widgets/textfield_widget.dart';
+import 'package:pautang_tracker/widgets/toast_widget.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ViewDebtScreen extends StatefulWidget {
@@ -119,9 +120,23 @@ class _ViewDebtScreenState extends State<ViewDebtScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await FirebaseFirestore.instance
+                            .collection('Utang')
+                            .doc(widget.data.id)
+                            .update({
+                          'lastPaid': DateFormat('MMMM dd, yyyy')
+                              .format(DateTime.now()),
+                          'paidAmount':
+                              FieldValue.increment(int.parse(payment.text)),
+                          'dueDate': DateFormat('MMMM dd, yyyy').format(
+                              DateFormat("MMMM dd, yyyy")
+                                  .parse(widget.data['dueDate'])
+                                  .add(Duration(days: 30)))
+                        });
                         Navigator.pop(context);
                         Navigator.pop(context);
+                        showToast('Payment recorded succesfully!');
                       },
                       child: TextWidget(
                         text: 'Save Payment',

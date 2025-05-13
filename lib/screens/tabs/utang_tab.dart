@@ -322,10 +322,16 @@ class _UtangTabState extends State<UtangTab> {
                                     fontFamily: 'Bold',
                                   ),
                                   TextWidget(
-                                    text:
-                                        'Due Date: ${data.docs[index]['dueDate']}',
+                                    text: data.docs[index]['paidAmount'] >=
+                                            data.docs[index]['amount']
+                                        ? 'This loan is completed!'
+                                        : 'Due Date: ${data.docs[index]['dueDate']}',
                                     fontSize: 12,
                                     fontFamily: 'Regular',
+                                    color: data.docs[index]['paidAmount'] >=
+                                            data.docs[index]['amount']
+                                        ? Colors.red
+                                        : Colors.grey,
                                   ),
                                 ],
                               ),
@@ -334,13 +340,22 @@ class _UtangTabState extends State<UtangTab> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   TextWidget(
-                                    text: 'P${data.docs[index]['amount']}',
+                                    text: data.docs[index]['paidAmount'] >=
+                                            data.docs[index]['amount']
+                                        ? '0'
+                                        : 'P${data.docs[index]['amount']}',
                                     fontSize: 24,
                                     fontFamily: 'Bold',
-                                    color: Colors.green,
+                                    color: data.docs[index]['paidAmount'] >=
+                                            data.docs[index]['amount']
+                                        ? Colors.red
+                                        : Colors.green,
                                   ),
                                   TextWidget(
-                                    text: 'Payment',
+                                    text: data.docs[index]['paidAmount'] >=
+                                            data.docs[index]['amount']
+                                        ? 'No payment'
+                                        : 'Payment',
                                     fontSize: 12,
                                     fontFamily: 'Regular',
                                   ),

@@ -116,10 +116,8 @@ class _OverdueLoanTabState extends State<OverdueLoanTab> {
                       child: ListView.builder(
                     itemCount: data.docs.length,
                     itemBuilder: (context, index) {
-                      return DateFormat("MMMM d, yyyy")
-                              .parse(data.docs[index]['lastPaid'])
-                              .isAfter(DateFormat("MMMM d, yyyy")
-                                  .parse(data.docs[index]['dueDate']))
+                      return DateTime.now().isAfter(DateFormat("MMMM dd, yyyy")
+                              .parse(data.docs[index]['dueDate']))
                           ? Slidable(
                               endActionPane: ActionPane(
                                 motion: ScrollMotion(),
