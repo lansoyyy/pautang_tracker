@@ -8,9 +8,10 @@ import 'package:pautang_tracker/widgets/toast_widget.dart';
 
 class AddBorrowerScreen extends StatefulWidget {
   String? id;
+  String? myId;
   dynamic data;
 
-  AddBorrowerScreen({super.key, this.id, this.data});
+  AddBorrowerScreen({super.key, this.id, this.data, required this.myId});
 
   @override
   State<AddBorrowerScreen> createState() => _AddBorrowerScreenState();
@@ -149,7 +150,7 @@ class _AddBorrowerScreenState extends State<AddBorrowerScreen> {
                       });
                     } else {
                       addBorrower(name.text, selectedGender, number.text,
-                          address.text, notes.text);
+                          address.text, notes.text, widget.myId);
                     }
                     Navigator.of(context).pop();
                     showToast('Borrower saved successfully!');

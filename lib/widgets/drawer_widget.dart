@@ -143,6 +143,7 @@ class DrawerWidget extends StatelessWidget {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (context) => BorrowerTab(
+                            myId: id,
                             id: id,
                           )),
                   (route) => false,

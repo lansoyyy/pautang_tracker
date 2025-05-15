@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<String> addBorrower(name, gender, contactNumber, address, note) async {
+Future<String> addBorrower(
+    name, gender, contactNumber, address, note, myId) async {
   final docUser = FirebaseFirestore.instance.collection('Borrower').doc();
 
   final json = {
+    'myId': myId,
     'name': name,
     'gender': gender,
     'contactNumber': contactNumber,

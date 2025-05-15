@@ -10,7 +10,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class BorrowerTab extends StatefulWidget {
   String id;
-  BorrowerTab({super.key, required this.id});
+  String? myId;
+  BorrowerTab({super.key, required this.id, required this.myId});
 
   @override
   State<BorrowerTab> createState() => _BorrowerTabState();
@@ -34,6 +35,7 @@ class _BorrowerTabState extends State<BorrowerTab> {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => AddBorrowerScreen(
                     id: '',
+                    myId: widget.myId,
                   )));
         },
         child: Icon(
@@ -127,6 +129,7 @@ class _BorrowerTabState extends State<BorrowerTab> {
                                       builder: (context) => AddBorrowerScreen(
                                             id: borrower.id,
                                             data: borrower,
+                                            myId: widget.myId,
                                           )));
                                 },
                                 backgroundColor: Colors.blue,
