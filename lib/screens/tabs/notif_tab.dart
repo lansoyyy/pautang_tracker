@@ -1,5 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 import 'package:pautang_tracker/screens/view_debt_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
@@ -26,92 +27,74 @@ class NotifTab extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return Slidable(
-            endActionPane: ActionPane(
-              motion: ScrollMotion(),
-              children: [
-                SlidableAction(
-                  onPressed: (context) {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: const Text(
-                                'Delete Confirmation',
-                                style: TextStyle(
-                                    fontFamily: 'Bold',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              content: const Text(
-                                'Are you sure you want to delete this Notification?',
-                                style: TextStyle(fontFamily: 'Regular'),
-                              ),
-                              actions: <Widget>[
-                                MaterialButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).pop(true),
-                                  child: const Text(
-                                    'Close',
-                                    style: TextStyle(
-                                        fontFamily: 'Regular',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                MaterialButton(
-                                  onPressed: () async {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text(
-                                    'Continue',
-                                    style: TextStyle(
-                                        fontFamily: 'Regular',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ));
-                  },
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  icon: Icons.delete,
-                  label: 'Delete',
+      body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('Utang')
+              .orderBy('dateTime', descending: true)
+              .snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              print(snapshot.error);
+              return const Center(child: Text('Error'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Padding(
+                padding: EdgeInsets.only(top: 50),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
                 ),
-              ],
-            ),
-            child: ListTile(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ViewDebtScreen()),
-                );
+              );
+            }
+
+            final data = snapshot.requireData;
+            return ListView.builder(
+              itemCount: data.docs.length,
+              itemBuilder: (context, index) {
+                return DateTime.now().isAfter(DateFormat("MMMM dd, yyyy")
+                        .parse(data.docs[index]['dueDate']))
+                    ? ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => ViewDebtScreen(
+                                      data: data.docs[index],
+                                      id: data.docs[index].id,
+                                    )),
+                          );
+                        },
+                        leading: Icon(
+                          Icons.notifications,
+                          color: Colors.red,
+                        ),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                        ),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            TextWidget(
+                              text:
+                                  "${data.docs[index]['borrowerData']['name']}'s loan is overdue",
+                              fontSize: 18,
+                              fontFamily: 'Medium',
+                            ),
+                            TextWidget(
+                              text: 'Due date: ${data.docs[index]['dueDate']}',
+                              fontSize: 12,
+                              fontFamily: 'Regular',
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      )
+                    : SizedBox();
               },
-              leading: Icon(
-                Icons.notifications,
-              ),
-              trailing: Icon(
-                Icons.keyboard_arrow_right,
-              ),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TextWidget(
-                    text: 'Title of the notification',
-                    fontSize: 18,
-                    fontFamily: 'Medium',
-                  ),
-                  TextWidget(
-                    text: 'January 01, 2001',
-                    fontSize: 12,
-                    fontFamily: 'Regular',
-                    color: Colors.grey,
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
+            );
+          }),
     );
   }
 }
