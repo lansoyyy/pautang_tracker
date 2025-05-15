@@ -31,6 +31,41 @@ class _HomeScreenState extends State<HomeScreen> {
   int overdueLoans = 0;
   int loansDueToday = 0;
   bool hasLoaded = false;
+  double totalLoanJanuary = 0;
+  double totalPaymentJanuary = 0;
+
+  double totalLoanFebruary = 0;
+  double totalPaymentFebruary = 0;
+
+  double totalLoanMarch = 0;
+  double totalPaymentMarch = 0;
+
+  double totalLoanApril = 0;
+  double totalPaymentApril = 0;
+
+  double totalLoanMay = 0;
+  double totalPaymentMay = 0;
+
+  double totalLoanJune = 0;
+  double totalPaymentJune = 0;
+
+  double totalLoanJuly = 0;
+  double totalPaymentJuly = 0;
+
+  double totalLoanAugust = 0;
+  double totalPaymentAugust = 0;
+
+  double totalLoanSeptember = 0;
+  double totalPaymentSeptember = 0;
+
+  double totalLoanOctober = 0;
+  double totalPaymentOctober = 0;
+
+  double totalLoanNovember = 0;
+  double totalPaymentNovember = 0;
+
+  double totalLoanDecember = 0;
+  double totalPaymentDecember = 0;
 
   getSummaryData() {
     FirebaseFirestore.instance
@@ -49,6 +84,76 @@ class _HomeScreenState extends State<HomeScreen> {
         .get()
         .then((QuerySnapshot data) {
       for (var doc in data.docs) {
+        print(DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month);
+        setState(() {
+          if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month == 1) {
+            totalPaymentJanuary += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              2) {
+            totalPaymentFebruary += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              3) {
+            totalPaymentMarch += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              4) {
+            totalPaymentApril += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              5) {
+            totalPaymentMay += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              6) {
+            totalPaymentJune += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              7) {
+            totalPaymentJuly += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              8) {
+            totalPaymentAugust += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              9) {
+            totalPaymentSeptember += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              10) {
+            totalPaymentOctober += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              11) {
+            totalPaymentNovember += double.parse(doc['paidAmount'].toString());
+          } else if (DateFormat("MMMM dd, yyyy").parse(doc['lastPaid']).month ==
+              12) {
+            totalPaymentDecember += double.parse(doc['paidAmount'].toString());
+          }
+        });
+
+        setState(() {
+          if (doc['dateTime'].toDate().month == 1) {
+            totalLoanJanuary += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 2) {
+            totalLoanFebruary += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 3) {
+            totalLoanMarch += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 4) {
+            totalLoanApril += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 5) {
+            totalLoanMay += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 6) {
+            totalLoanJune += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 7) {
+            totalLoanJuly += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 8) {
+            totalLoanAugust += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 9) {
+            totalLoanSeptember += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 10) {
+            totalLoanOctober += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 11) {
+            totalLoanNovember += double.parse(doc['amount'].toString());
+          } else if (doc['dateTime'].toDate().month == 12) {
+            totalLoanDecember += double.parse(doc['amount'].toString());
+          }
+        });
+
+        // totalLoan += double.parse(doc['amount'].toString());
+
         if (DateTime.now()
             .isAfter(DateFormat("MMMM dd, yyyy").parse(doc['dueDate']))) {
           setState(() {
@@ -74,32 +179,32 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final List<SalesData> chartData = [
-      SalesData(1, 0),
-      SalesData(2, 28),
-      SalesData(3, 34),
-      SalesData(4, 32),
-      SalesData(5, 40),
-      SalesData(6, 35),
-      SalesData(7, 41),
-      SalesData(8, 35),
-      SalesData(9, 25),
-      SalesData(10, 17),
-      SalesData(11, 38),
-      SalesData(12, 41)
+      SalesData(1, totalLoanJanuary),
+      SalesData(2, totalLoanFebruary),
+      SalesData(3, totalLoanMarch),
+      SalesData(4, totalLoanApril),
+      SalesData(5, totalLoanMay),
+      SalesData(6, totalLoanJune),
+      SalesData(7, totalLoanJuly),
+      SalesData(8, totalLoanAugust),
+      SalesData(9, totalLoanSeptember),
+      SalesData(10, totalLoanOctober),
+      SalesData(11, totalLoanNovember),
+      SalesData(12, totalLoanDecember),
     ];
     final List<SalesData> chartData1 = [
-      SalesData(1, 0),
-      SalesData(2, 12),
-      SalesData(3, 4),
-      SalesData(4, 51),
-      SalesData(5, 6),
-      SalesData(6, 26),
-      SalesData(7, 31),
-      SalesData(8, 6),
-      SalesData(9, 15),
-      SalesData(10, 17),
-      SalesData(11, 27),
-      SalesData(12, 35)
+      SalesData(1, totalPaymentJanuary),
+      SalesData(2, totalPaymentFebruary),
+      SalesData(3, totalPaymentMarch),
+      SalesData(4, totalPaymentApril),
+      SalesData(5, totalPaymentMay),
+      SalesData(6, totalPaymentJune),
+      SalesData(7, totalPaymentJuly),
+      SalesData(8, totalPaymentAugust),
+      SalesData(9, totalPaymentSeptember),
+      SalesData(10, totalPaymentOctober),
+      SalesData(11, totalPaymentNovember),
+      SalesData(12, totalPaymentDecember),
     ];
     return Scaffold(
       backgroundColor: Colors.white,
