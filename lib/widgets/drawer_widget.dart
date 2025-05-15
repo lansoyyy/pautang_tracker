@@ -173,7 +173,7 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'About',
+                text: 'Licenses',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
