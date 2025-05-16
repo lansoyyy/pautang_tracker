@@ -15,10 +15,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-// To Do
-// Developer Screen
-// Contact Screen
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
