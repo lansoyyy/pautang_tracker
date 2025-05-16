@@ -16,8 +16,6 @@ void main() async {
 }
 
 // To Do
-// Calendars
-// If logged in without creds, go to apply screen
 // Developer Screen
 // Contact Screen
 
