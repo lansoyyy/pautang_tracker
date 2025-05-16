@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
-import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
-import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
 import 'package:pautang_tracker/screens/view_debt_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/widgets/drawer_widget.dart';
@@ -323,129 +321,108 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => BorrowerTab(
-                                        myId: widget.id,
-                                        id: widget.id,
-                                      )),
-                            );
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: SizedBox(
-                              width: 175,
-                              height: 125,
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                        color: primary.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Center(
-                                        child: Image.asset(
-                                          'assets/images/borrow.png',
-                                          height: 40,
-                                        ),
+                        Card(
+                          color: Colors.white,
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: SizedBox(
+                            width: 175,
+                            height: 125,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 65,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: primary.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/borrow.png',
+                                        height: 40,
                                       ),
                                     ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextWidget(
-                                            text: borrowers.toString(),
-                                            fontSize: 38,
-                                            fontFamily: 'Bold',
-                                          ),
-                                          TextWidget(
-                                            text: 'Borrowers',
-                                            fontSize: 12,
-                                            fontFamily: 'Regular',
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextWidget(
+                                          text: borrowers.toString(),
+                                          fontSize: 38,
+                                          fontFamily: 'Bold',
+                                        ),
+                                        TextWidget(
+                                          text: 'Borrowers',
+                                          fontSize: 12,
+                                          fontFamily: 'Regular',
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => UtangTab(
-                                        id: widget.id,
-                                      )),
-                            );
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: SizedBox(
-                              width: 175,
-                              height: 125,
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 65,
-                                      width: 65,
-                                      decoration: BoxDecoration(
-                                        color: primary.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(12),
+                        Card(
+                          color: Colors.white,
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: SizedBox(
+                            width: 175,
+                            height: 125,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 65,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: primary.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/deadline.png',
+                                        height: 40,
                                       ),
-                                      child: Center(
-                                        child: Image.asset(
-                                          'assets/images/deadline.png',
-                                          height: 40,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextWidget(
+                                          text: overdueLoans.toString(),
+                                          fontSize: 38,
+                                          fontFamily: 'Bold',
                                         ),
-                                      ),
+                                        TextWidget(
+                                          text: 'Overdue\nLoans',
+                                          fontSize: 12,
+                                          fontFamily: 'Regular',
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextWidget(
-                                            text: overdueLoans.toString(),
-                                            fontSize: 38,
-                                            fontFamily: 'Bold',
-                                          ),
-                                          TextWidget(
-                                            text: 'Overdue\nLoans',
-                                            fontSize: 12,
-                                            fontFamily: 'Regular',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -455,62 +432,52 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => UtangTab(
-                                    id: widget.id,
-                                  )),
-                        );
-                      },
-                      child: Card(
-                        color: Colors.white,
-                        elevation: 1,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 125,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 65,
-                                  width: 65,
-                                  decoration: BoxDecoration(
-                                    color: primary.withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Center(
-                                    child: Image.asset(
-                                      'assets/images/loan.png',
-                                      height: 40,
-                                    ),
+                    Card(
+                      color: Colors.white,
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 125,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 65,
+                                width: 65,
+                                decoration: BoxDecoration(
+                                  color: primary.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Center(
+                                  child: Image.asset(
+                                    'assets/images/loan.png',
+                                    height: 40,
                                   ),
                                 ),
-                                const SizedBox(width: 20),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget(
-                                      text: loansDueToday.toString(),
-                                      fontSize: 38,
-                                      fontFamily: 'Bold',
-                                    ),
-                                    TextWidget(
-                                      text: 'Loans Due Today',
-                                      fontSize: 12,
-                                      fontFamily: 'Regular',
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(width: 20),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    text: loansDueToday.toString(),
+                                    fontSize: 38,
+                                    fontFamily: 'Bold',
+                                  ),
+                                  TextWidget(
+                                    text: 'Loans Due Today',
+                                    fontSize: 12,
+                                    fontFamily: 'Regular',
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -532,211 +499,331 @@ class _HomeScreenState extends State<HomeScreen> {
                         backgroundColor: Colors.white,
                         view: CalendarView.month,
                         onTap: (calendarTapDetails) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                child: SizedBox(
-                                  width: 500,
-                                  height: 500,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            TextWidget(
-                                              text:
-                                                  '${calendarTapDetails.date!.day}/${calendarTapDetails.date!.month}/${calendarTapDetails.date!.year}',
-                                              fontSize: 18,
-                                              fontFamily: 'Medium',
-                                            ),
-                                            IconButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                icon: Icon(
-                                                  Icons.close,
-                                                  color: Colors.red,
-                                                )),
-                                          ],
-                                        ),
-                                        Divider(),
-                                        TextWidget(
-                                          text: 'Loan',
-                                          fontSize: 18,
-                                          fontFamily: 'Bold',
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            TextWidget(
-                                              text: 'Today',
-                                              fontSize: 14,
-                                              fontFamily: 'Regular',
-                                            ),
-                                            TextWidget(
-                                              text: 'P199,000',
-                                              fontSize: 18,
-                                              fontFamily: 'Medium',
-                                              color: Colors.green,
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            TextWidget(
-                                              text: 'This Month',
-                                              fontSize: 14,
-                                              fontFamily: 'Regular',
-                                            ),
-                                            TextWidget(
-                                              text: 'P699,000',
-                                              fontSize: 18,
-                                              fontFamily: 'Medium',
-                                              color: Colors.green,
-                                            ),
-                                          ],
-                                        ),
-                                        Divider(),
-                                        TextWidget(
-                                          text: 'Payments',
-                                          fontSize: 18,
-                                          fontFamily: 'Bold',
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            TextWidget(
-                                              text: 'Today',
-                                              fontSize: 14,
-                                              fontFamily: 'Regular',
-                                            ),
-                                            TextWidget(
-                                              text: 'P29,000',
-                                              fontSize: 18,
-                                              fontFamily: 'Medium',
-                                              color: Colors.green,
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            TextWidget(
-                                              text: 'This Month',
-                                              fontSize: 14,
-                                              fontFamily: 'Regular',
-                                            ),
-                                            TextWidget(
-                                              text: '79,000',
-                                              fontSize: 18,
-                                              fontFamily: 'Medium',
-                                              color: Colors.green,
-                                            ),
-                                          ],
-                                        ),
-                                        Divider(),
-                                        TextWidget(
-                                          text: 'Due Today',
-                                          fontSize: 18,
-                                          fontFamily: 'Bold',
-                                        ),
-                                        Expanded(
-                                            child: SingleChildScrollView(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              for (int i = 0; i < 100; i++)
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                          double loansToday = 0;
+                          double loansThisMonth = 0;
+                          double paymentsToday = 0;
+                          double paymentsThisMonth = 0;
+                          FirebaseFirestore.instance
+                              .collection('Utang')
+                              .get()
+                              .then((QuerySnapshot querySnapshot) {
+                            for (var doc in querySnapshot.docs) {
+                              if (doc['dateTime'].toDate().month ==
+                                  calendarTapDetails.date!.month) {
+                                setState(() {
+                                  loansThisMonth +=
+                                      double.parse(doc['amount'].toString());
+                                });
+                              }
+                              if (doc['dateTime'].toDate().month ==
+                                      calendarTapDetails.date!.month &&
+                                  doc['dateTime'].toDate().day ==
+                                      calendarTapDetails.date!.day) {
+                                setState(() {
+                                  loansToday +=
+                                      double.parse(doc['amount'].toString());
+                                });
+                              }
+                            }
+                          }).whenComplete(
+                            () {
+                              FirebaseFirestore.instance
+                                  .collection('Payment History')
+                                  .get()
+                                  .then((QuerySnapshot querySnapshot) {
+                                for (var doc in querySnapshot.docs) {
+                                  if (doc['dateTime'].toDate().month ==
+                                      calendarTapDetails.date!.month) {
+                                    setState(() {
+                                      paymentsThisMonth += double.parse(
+                                          doc['amount'].toString());
+                                    });
+                                  }
+                                  if (doc['dateTime'].toDate().month ==
+                                          calendarTapDetails.date!.month &&
+                                      doc['dateTime'].toDate().day ==
+                                          calendarTapDetails.date!.day) {
+                                    setState(() {
+                                      paymentsToday += double.parse(
+                                          doc['amount'].toString());
+                                    });
+                                  }
+                                }
+                              }).whenComplete(
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        child: SizedBox(
+                                          width: 500,
+                                          height: 500,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.start,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    ListTile(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .push(
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  ViewDebtScreen()),
-                                                        );
-                                                      },
-                                                      leading: Icon(
-                                                        Icons.account_circle,
-                                                        size: 50,
-                                                      ),
-                                                      title: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          TextWidget(
-                                                            text: 'John Doe',
-                                                            fontSize: 18,
-                                                            fontFamily: 'Bold',
-                                                          ),
-                                                          TextWidget(
-                                                            text:
-                                                                'Zone 03, Poblacion Impasugong Bukidnon',
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'Regular',
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      trailing: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          TextWidget(
-                                                            text: 'P5,499',
-                                                            fontSize: 24,
-                                                            fontFamily: 'Bold',
-                                                            color: Colors.green,
-                                                          ),
-                                                          TextWidget(
-                                                            text: 'Payment',
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'Regular',
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    TextWidget(
+                                                      text: DateFormat.yMMMd()
+                                                          .format(
+                                                              calendarTapDetails
+                                                                  .date!),
+                                                      fontSize: 18,
+                                                      fontFamily: 'Medium',
                                                     ),
-                                                    Divider(),
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        icon: Icon(
+                                                          Icons.close,
+                                                          color: Colors.red,
+                                                        )),
                                                   ],
                                                 ),
-                                            ],
+                                                Divider(),
+                                                TextWidget(
+                                                  text: 'Loan',
+                                                  fontSize: 18,
+                                                  fontFamily: 'Bold',
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextWidget(
+                                                      text: 'This Day',
+                                                      fontSize: 14,
+                                                      fontFamily: 'Regular',
+                                                    ),
+                                                    TextWidget(
+                                                      text:
+                                                          'P${loansToday.toStringAsFixed(0)}',
+                                                      fontSize: 18,
+                                                      fontFamily: 'Medium',
+                                                      color: Colors.green,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextWidget(
+                                                      text: 'This Month',
+                                                      fontSize: 14,
+                                                      fontFamily: 'Regular',
+                                                    ),
+                                                    TextWidget(
+                                                      text:
+                                                          'P${loansThisMonth.toStringAsFixed(0)}',
+                                                      fontSize: 18,
+                                                      fontFamily: 'Medium',
+                                                      color: Colors.green,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Divider(),
+                                                TextWidget(
+                                                  text: 'Payments',
+                                                  fontSize: 18,
+                                                  fontFamily: 'Bold',
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextWidget(
+                                                      text: 'This Day',
+                                                      fontSize: 14,
+                                                      fontFamily: 'Regular',
+                                                    ),
+                                                    TextWidget(
+                                                      text:
+                                                          'P${paymentsToday.toStringAsFixed(0)}',
+                                                      fontSize: 18,
+                                                      fontFamily: 'Medium',
+                                                      color: Colors.green,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextWidget(
+                                                      text: 'This Month',
+                                                      fontSize: 14,
+                                                      fontFamily: 'Regular',
+                                                    ),
+                                                    TextWidget(
+                                                      text:
+                                                          'P${paymentsThisMonth.toStringAsFixed(0)}',
+                                                      fontSize: 18,
+                                                      fontFamily: 'Medium',
+                                                      color: Colors.green,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Divider(),
+                                                TextWidget(
+                                                  text: 'Due this day',
+                                                  fontSize: 18,
+                                                  fontFamily: 'Bold',
+                                                ),
+                                                StreamBuilder<QuerySnapshot>(
+                                                    stream: FirebaseFirestore
+                                                        .instance
+                                                        .collection('Utang')
+                                                        .snapshots(),
+                                                    builder: (BuildContext
+                                                            context,
+                                                        AsyncSnapshot<
+                                                                QuerySnapshot>
+                                                            snapshot) {
+                                                      if (snapshot.hasError) {
+                                                        print(snapshot.error);
+                                                        return const Center(
+                                                            child:
+                                                                Text('Error'));
+                                                      }
+                                                      if (snapshot
+                                                              .connectionState ==
+                                                          ConnectionState
+                                                              .waiting) {
+                                                        return const Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 50),
+                                                          child: Center(
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      final data =
+                                                          snapshot.requireData;
+                                                      return Expanded(
+                                                          child:
+                                                              SingleChildScrollView(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            for (int i = 0;
+                                                                i <
+                                                                    data.docs
+                                                                        .length;
+                                                                i++)
+                                                              DateFormat.yMMMd().format(DateFormat(
+                                                                              "MMMM dd, yyyy")
+                                                                          .parse(data.docs[i]
+                                                                              [
+                                                                              'dueDate'])) ==
+                                                                      DateFormat
+                                                                              .yMMMd()
+                                                                          .format(calendarTapDetails
+                                                                              .date!)
+                                                                  ? Builder(builder:
+                                                                      (context) {
+                                                                      return Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.start,
+                                                                        children: [
+                                                                          ListTile(
+                                                                            onTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                              Navigator.of(context).push(
+                                                                                MaterialPageRoute(
+                                                                                    builder: (context) => ViewDebtScreen(
+                                                                                          data: data.docs[i],
+                                                                                          id: data.docs[i].id,
+                                                                                        )),
+                                                                              );
+                                                                            },
+                                                                            leading:
+                                                                                Icon(
+                                                                              Icons.account_circle,
+                                                                              size: 50,
+                                                                            ),
+                                                                            title:
+                                                                                Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                              children: [
+                                                                                TextWidget(
+                                                                                  text: data.docs[i]['borrowerData']['name'],
+                                                                                  fontSize: 18,
+                                                                                  fontFamily: 'Bold',
+                                                                                ),
+                                                                                TextWidget(
+                                                                                  text: data.docs[i]['borrowerData']['address'],
+                                                                                  fontSize: 12,
+                                                                                  fontFamily: 'Regular',
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            trailing:
+                                                                                Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                              children: [
+                                                                                TextWidget(
+                                                                                  text: 'P${data.docs[i]['payment']}',
+                                                                                  fontSize: 24,
+                                                                                  fontFamily: 'Bold',
+                                                                                  color: Colors.green,
+                                                                                ),
+                                                                                TextWidget(
+                                                                                  text: 'Payment',
+                                                                                  fontSize: 12,
+                                                                                  fontFamily: 'Regular',
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                        ],
+                                                                      );
+                                                                    })
+                                                                  : SizedBox()
+                                                          ],
+                                                        ),
+                                                      ));
+                                                    }),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        )),
-                                        SizedBox(
-                                          height: 10,
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                      );
+                                    },
+                                  );
+                                },
                               );
                             },
                           );

@@ -117,13 +117,10 @@ class _AdddebtTabState extends State<AdddebtTab> {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                          SizedBox(width: 200, child: _buildDueDatePicker()),
                           SizedBox(
                             width: 150,
                             child: TextFieldWidget(
-                              label: selectedFrequency == 'Daily'
-                                  ? 'How many days ?'
-                                  : 'How many ${selectedFrequency!.split('l')[0]} ?',
+                              label: 'Number of payments',
                               controller: duration,
                               borderColor: Colors.black,
                               inputType: TextInputType.number,
@@ -134,6 +131,7 @@ class _AdddebtTabState extends State<AdddebtTab> {
                               },
                             ),
                           ),
+                          SizedBox(width: 200, child: _buildDueDatePicker()),
                         ])
                   : _buildDueDatePicker(),
               const SizedBox(height: 40),
