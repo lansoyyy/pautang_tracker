@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pautang_tracker/screens/tabs/adddebt_tab.dart';
+import 'package:pautang_tracker/screens/tabs/aboutus_page.dart';
 import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
+import 'package:pautang_tracker/screens/tabs/contactus_page.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/screens/tabs/overdueloan_tab.dart';
 import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
@@ -89,7 +90,7 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'All Loan',
+                text: 'Loans',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
@@ -109,27 +110,7 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'Overdue Loan',
-                fontSize: 18,
-                fontFamily: 'Medium',
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.add_box_outlined,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) => AdddebtTab(
-                            id: id,
-                          )),
-                  (route) => false,
-                );
-              },
-              title: TextWidget(
-                text: 'Add Loan',
+                text: 'Overdue Loans',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
@@ -157,7 +138,47 @@ class DrawerWidget extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
+                Icons.phone,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => ContactusPage(
+                            id: id,
+                          )),
+                  (route) => false,
+                );
+              },
+              title: TextWidget(
+                text: 'Contact Us',
+                fontSize: 18,
+                fontFamily: 'Medium',
+              ),
+            ),
+            ListTile(
+              leading: Icon(
                 Icons.info_outline,
+                color: Colors.black,
+              ),
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => AboutusPage(
+                            id: id,
+                          )),
+                  (route) => false,
+                );
+              },
+              title: TextWidget(
+                text: 'About Us',
+                fontSize: 18,
+                fontFamily: 'Medium',
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.attribution_outlined,
                 color: Colors.black,
               ),
               onTap: () {
