@@ -77,7 +77,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.payment,
+                Icons.edit_note_outlined,
                 color: Colors.black,
               ),
               onTap: () {
@@ -97,7 +97,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.av_timer_rounded,
+                Icons.calendar_month_outlined,
                 color: Colors.black,
               ),
               onTap: () {
@@ -158,7 +158,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.info_outline,
+                Icons.engineering_outlined,
                 color: Colors.black,
               ),
               onTap: () {
@@ -171,14 +171,14 @@ class DrawerWidget extends StatelessWidget {
                 );
               },
               title: TextWidget(
-                text: 'About Us',
+                text: 'Developers',
                 fontSize: 18,
                 fontFamily: 'Medium',
               ),
             ),
             ListTile(
               leading: Icon(
-                Icons.attribution_outlined,
+                Icons.info_outline,
                 color: Colors.black,
               ),
               onTap: () {

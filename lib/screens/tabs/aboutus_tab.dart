@@ -33,7 +33,16 @@ class AboutusTab extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 20,
+                height: 25,
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/avlogo.png',
+                  height: 75,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
               ),
               TextWidget(text: 'Who we are', fontSize: 24, color: black),
               const SizedBox(

@@ -31,7 +31,14 @@ class ContactusTab extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 25,
+            ),
+            Image.asset(
+              'assets/images/avlogo.png',
+              height: 75,
+            ),
+            const SizedBox(
+              height: 50,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
