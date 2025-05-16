@@ -4,10 +4,10 @@ import 'package:pautang_tracker/widgets/text_widget.dart';
 
 import '../../../widgets/drawer_widget.dart';
 
-class AboutusPage extends StatelessWidget {
+class AboutusTab extends StatelessWidget {
   String id;
 
-  AboutusPage({super.key, required this.id});
+  AboutusTab({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

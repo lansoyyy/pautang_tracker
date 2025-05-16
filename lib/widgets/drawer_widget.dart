@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pautang_tracker/screens/tabs/aboutus_page.dart';
+import 'package:pautang_tracker/screens/tabs/aboutus_tab.dart';
 import 'package:pautang_tracker/screens/tabs/borrower_tab.dart';
-import 'package:pautang_tracker/screens/tabs/contactus_page.dart';
+import 'package:pautang_tracker/screens/tabs/contactus_tab.dart';
 import 'package:pautang_tracker/screens/tabs/notif_tab.dart';
 import 'package:pautang_tracker/screens/tabs/overdueloan_tab.dart';
 import 'package:pautang_tracker/screens/tabs/utang_tab.dart';
@@ -144,7 +144,7 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => ContactusPage(
+                      builder: (context) => ContactusTab(
                             id: id,
                           )),
                   (route) => false,
@@ -164,7 +164,7 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => AboutusPage(
+                      builder: (context) => AboutusTab(
                             id: id,
                           )),
                   (route) => false,
