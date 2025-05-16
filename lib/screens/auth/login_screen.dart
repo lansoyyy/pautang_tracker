@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:pautang_tracker/screens/apply_screen.dart';
 import 'package:pautang_tracker/screens/home_screen.dart';
 import 'package:pautang_tracker/utils/colors.dart';
 import 'package:pautang_tracker/utils/const.dart';
@@ -102,7 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             .get()
                             .then((QuerySnapshot querySnapshot) {
                           if (querySnapshot.docs.isEmpty) {
-                            showToast("Username doesn't exist!");
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => ApplyScreen()),
+                            );
                           } else {
                             if (querySnapshot.docs.first['isActive']) {
                               box.write('username', username.text);
